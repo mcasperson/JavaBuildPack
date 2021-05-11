@@ -58,7 +58,7 @@ fi
 JAVA_HOME=$jdkLayer $mavenLayer/bin/mvn -Dmaven.repo.local=$dependencieslayer/.m2/repository clean package
 
 for jarFile in $(find target -maxdepth 1 -name "*.jar" -type f); do
-	cat >> "${layersDir}/launch.toml" <<EOF
+	cat >> "$layersdir/launch.toml" <<EOF
 [[processes]]
 type = "web"
 command = "java -jar $jarFile"
