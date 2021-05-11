@@ -8,19 +8,19 @@ layersdir=$1
 
 dependencieslayer="$layersdir"/dependencies
 mkdir -p "$dependencieslayer/.m2/repository"
-echo -e 'cache = true' > "$dependencieslayer/dependencies.toml"
+echo -e 'cache = true' > "$layersdir/dependencies.toml"
 
 mavenLayer="$layersdir"/maven
 mkdir -p "$mavenLayer"
-echo -e 'cache = true\nbuild = true' > "$mavenLayer/maven.toml"
+echo -e 'cache = true\nbuild = true' > "$layersdir/maven.toml"
 
 jdkLayer="$layersdir"/jdk
 mkdir -p "$jdkLayer"
-echo -e 'cache = true\nbuild = true' > "$jdkLayer/jdk.toml"
+echo -e 'cache = true\nbuild = true' > "$layersdir/jdk.toml"
 
 jreLayer="$layersdir"/java
 mkdir -p "$jreLayer"
-echo -e 'launch = true' > "$jreLayer/java.toml"
+echo -e 'launch = true' > "$layersdir/java.toml"
 
 # Download Maven if it doesn't exist already.
 if [[ ! -f $mavenLayer/bin/mvn ]]; then
