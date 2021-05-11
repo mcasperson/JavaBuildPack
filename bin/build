@@ -23,7 +23,7 @@ mkdir -p "$jreLayer"
 echo -e 'launch = true' > "$jreLayer/java.toml"
 
 # Download Maven if it doesn't exist already.
-if [[ ! -f $buildLayer/bin/mvn ]]; then
+if [[ ! -f $mavenLayer/bin/mvn ]]; then
 	echo "Downloading Maven"
 	maven_url=https://apache.mirror.digitalpacific.com.au/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.tar.gz
 	# Ensure the executables are placed under the layer's bin directory by stripping the first
@@ -41,6 +41,7 @@ if [[ ! -f $jdkLayer/bin/java ]]; then
 	# directory from the tar file.
 	wget -q -O - "$jdk_url" | tar --strip-components=1 -xzf - -C "$jdkLayer"
 	# Set the JDK layer directory as the JAVA_HOME directory
+	mkdir $jdkLayer/env
 	echo "$jdkLayer" > $jdkLayer/env/JAVA_HOME
 else
 	echo "Skipped JDK Download"
@@ -54,6 +55,7 @@ if [[ ! -f $jreLayer/bin/java ]]; then
 	# directory from the tar file.
 	wget -q -O - "$jre_url" | tar --strip-components=1 -xzf - -C "$jreLayer"
 	# Set the JDK layer directory as the JAVA_HOME directory
+	mkdir $jreLayer/env
 	echo "$jreLayer" > $jreLayer/env/JAVA_HOME
 else
 	echo "Skipped JRE Download"
