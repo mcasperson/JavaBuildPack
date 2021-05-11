@@ -28,7 +28,7 @@ if [[ ! -f $buildLayer/bin/mvn ]]; then
 	maven_url=https://apache.mirror.digitalpacific.com.au/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.tar.gz
 	# Ensure the executables are placed under the layer's bin directory by stripping the first
 	# directory from the tar file.
-	wget -q -O - "$maven_url" | tar -xzf --strip-components=1 - -C "$mavenLayer"
+	wget -q -O - "$maven_url" | tar --strip-components=1 -xzf - -C "$mavenLayer"
 else
 	echo "Skipped Maven Download"
 fi
@@ -39,7 +39,7 @@ if [[ ! -f $jdkLayer/bin/java ]]; then
 	jdk_url=https://cdn.azul.com/zulu/bin/zulu11.48.21-ca-jdk11.0.11-linux_x64.tar.gz
 	# Ensure the executables are placed under the layer's bin directory by stripping the first
 	# directory from the tar file.
-	wget -q -O - "$jdk_url" | tar -xzf --strip-components=1 - -C "$jdkLayer"
+	wget -q -O - "$jdk_url" | tar --strip-components=1 -xzf - -C "$jdkLayer"
 	# Set the JDK layer directory as the JAVA_HOME directory
 	echo "$jdkLayer" > $jdkLayer/env/JAVA_HOME
 else
@@ -52,7 +52,7 @@ if [[ ! -f $jreLayer/bin/java ]]; then
 	jre_url=https://cdn.azul.com/zulu/bin/zulu11.48.21-ca-jre11.0.11-linux_x64.tar.gz
 	# Ensure the executables are placed under the layer's bin directory by stripping the first
 	# directory from the tar file.
-	wget -q -O - "$jre_url" | tar -xzf --strip-components=1 - -C "$jreLayer"
+	wget -q -O - "$jre_url" | tar --strip-components=1 -xzf - -C "$jreLayer"
 	# Set the JDK layer directory as the JAVA_HOME directory
 	echo "$jreLayer" > $jreLayer/env/JAVA_HOME
 else
