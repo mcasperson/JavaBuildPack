@@ -40,9 +40,6 @@ if [[ ! -f $jdkLayer/bin/java ]]; then
 	# Ensure the executables are placed under the layer's bin directory by stripping the first
 	# directory from the tar file.
 	wget -q -O - "$jdk_url" | tar --strip-components=1 -xzf - -C "$jdkLayer"
-	# Set the JDK layer directory as the JAVA_HOME directory
-	mkdir $jdkLayer/env
-	echo "$jdkLayer" > $jdkLayer/env/JAVA_HOME
 else
 	echo "Skipped JDK Download"
 fi
@@ -54,14 +51,11 @@ if [[ ! -f $jreLayer/bin/java ]]; then
 	# Ensure the executables are placed under the layer's bin directory by stripping the first
 	# directory from the tar file.
 	wget -q -O - "$jre_url" | tar --strip-components=1 -xzf - -C "$jreLayer"
-	# Set the JDK layer directory as the JAVA_HOME directory
-	mkdir $jreLayer/env
-	echo "$jreLayer" > $jreLayer/env/JAVA_HOME
 else
 	echo "Skipped JRE Download"
 fi
 
-mvn -Dmaven.repo.local=$dependencieslayer/.m2/repository clean package
+JAVA_HOME=$jdkLayer $mavenLayer/bin/mvn -Dmaven.repo.local=$dependencieslayer/.m2/repository clean package
 
 for jarFile in $(find target -maxdepth 1 -name "*.jar" -type f); do
 	cat >> "${layersDir}/launch.toml" <<EOF
