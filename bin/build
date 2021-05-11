@@ -20,7 +20,7 @@ echo -e 'cache = true\nbuild = true' > "$layersdir/jdk.toml"
 
 jreLayer="$layersdir"/java
 mkdir -p "$jreLayer"
-echo -e 'launch = true' > "$layersdir/java.toml"
+echo -e 'launch = true\ncache = true' > "$layersdir/java.toml"
 
 # Download Maven if it doesn't exist already.
 if [[ ! -f $mavenLayer/bin/mvn ]]; then
