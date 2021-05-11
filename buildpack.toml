@@ -1,0 +1,12 @@
+# Buildpack API version
+api = "0.5"
+
+# Buildpack ID and metadata
+[buildpack]
+id = "mcasperson/java"
+version = "0.0.1"
+name = "Java Buildpack"
+
+# Stacks that the buildpack will work with
+[[stacks]]
+id = "heroku-20"

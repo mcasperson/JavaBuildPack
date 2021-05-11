@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# The -e option will cause a bash script to exit immediately when a command fails.
+# The -o pipefail option means if command in a pipeline fails, that return code will be used as the return code of the whole pipeline.
+set -eo pipefail
+
+# Check for the presense of a pom.xml file.
+if [[ ! -f pom.xml ]]; then
+	# If pom.xml does not exist, return an error code.
+	exit 100
+fi
