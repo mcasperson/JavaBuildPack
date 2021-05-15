@@ -8,7 +8,7 @@ layersdir=$1
 
 dependencieslayer="$layersdir"/dependencies
 mkdir -p "$dependencieslayer/.m2/repository"
-echo -e 'cache = true' > "$layersdir/dependencies.toml"
+echo -e 'cache = true\nbuild = true' > "$layersdir/dependencies.toml"
 
 mavenLayer="$layersdir"/maven
 mkdir -p "$mavenLayer"
