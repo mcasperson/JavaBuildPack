@@ -25,7 +25,7 @@ echo -e 'launch = true\ncache = true' > "$layersdir/java.toml"
 # Download Maven if it doesn't exist already.
 if [[ ! -f $mavenLayer/bin/mvn ]]; then
 	echo "Downloading Maven"
-	maven_url=https://apache.mirror.digitalpacific.com.au/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.tar.gz
+	maven_url=https://dlcdn.apache.org/maven/maven-3/3.8.3/binaries/apache-maven-3.8.3-bin.tar.gz
 	# Ensure the executables are placed under the layer's bin directory by stripping the first
 	# directory from the tar file.
 	wget -q -O - "$maven_url" | tar --strip-components=1 -xzf - -C "$mavenLayer"
