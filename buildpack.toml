@@ -9,4 +9,4 @@ name = "Java Buildpack"
 
 # Stacks that the buildpack will work with
 [[stacks]]
-id = "heroku-20"
+id = "io.buildpacks.samples.stacks.bionic"
