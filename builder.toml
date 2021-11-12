@@ -12,3 +12,5 @@ uri = "."
 # Stack that will be used by the builder
 [stack]
 id = "heroku-20"
+run-image = "heroku/pack:20"
+build-image = "heroku/pack:20-build"
