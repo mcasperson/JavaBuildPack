@@ -11,8 +11,4 @@ uri = "."
 
 # Stack that will be used by the builder
 [stack]
-id = "io.buildpacks.samples.stacks.bionic"
-# This image is used at runtime
-run-image = "cnbs/sample-stack-run:bionic"
-# This image is used at build-time
-build-image = "cnbs/sample-stack-build:bionic"
+id = "heroku-20"
